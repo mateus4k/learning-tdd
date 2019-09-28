@@ -1,5 +1,14 @@
 const routes = require('express').Router()
 
-routes.get('/', (req, res) => res.send('Hello world!'))
+const { User } = require('./app/models/User')
+
+routes.get('/', async (req, res) => {
+  const user = await User.create({
+    name: 'Mateus',
+    email: 'mateus4k@protonmail.ch',
+    password_hash: '123456'
+  })
+  return res.json({ user })
+})
 
 module.exports = routes
